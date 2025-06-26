@@ -28,17 +28,9 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<StudentResponse> createStudent(@RequestBody StudentRequest studentRequest) {
         logger.info("Received request to create student: {}",studentRequest.getEmail());
-        try {
             StudentResponse studentResponse = studentService.createStudent(studentRequest);
             logger.info("Successfully created Student with ID: {}",studentResponse.getId());
             return new ResponseEntity<>(studentResponse, HttpStatus.CREATED);
-        } catch (EmailAlreadyExistsException e) {
-            logger.warn("Attempt to create student with existing email {}: {}", studentRequest.getEmail(), e.getMessage());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new StudentResponse(null,null,e.getMessage(),null,null,null));
-        }catch (Exception e) {
-            logger.error("Error creating student for email {}: {}", studentRequest.getEmail(), e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new StudentResponse(null,null,"An unexpected error occured",null,null,null));
-        }
 
     }
 }
