@@ -1,19 +1,22 @@
 package com.demo.sms.dto;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 public class ErrorResponse {
 
     private String message;
     private String errorCode;
-    private LocalDate timestamp;
+    private String errorPath;
+    private LocalDateTime timestamp;
 
     public ErrorResponse() {
     }
 
-    public ErrorResponse(String message, String errorCode, LocalDate timestamp) {
+    public ErrorResponse(String message, String errorCode,String errorPath, LocalDateTime timestamp) {
         this.message = message;
         this.errorCode = errorCode;
+        this.errorPath=errorPath;
         this.timestamp = timestamp;
     }
 
@@ -33,11 +36,19 @@ public class ErrorResponse {
         this.errorCode = errorCode;
     }
 
-    public LocalDate getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDate timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getErrorPath() {
+        return errorPath;
+    }
+
+    public void setErrorPath(String errorPath) {
+        this.errorPath = errorPath;
     }
 }

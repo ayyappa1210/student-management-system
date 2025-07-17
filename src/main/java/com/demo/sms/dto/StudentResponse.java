@@ -1,10 +1,5 @@
 package com.demo.sms.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDate;
 
 
@@ -15,17 +10,19 @@ public class StudentResponse {
     private String email;
     private Integer age;
     private LocalDate dateOfBirth;
+    private AddressResponse address;
 
     public StudentResponse() {
     }
 
-    public StudentResponse(Long id, String firstname, String lastname, String email, Integer age, LocalDate dateOfBirth) {
+    public StudentResponse(Long id, String firstname, String lastname, String email, Integer age, LocalDate dateOfBirth, AddressResponse address) {
         this.id = id;
         this.firstname = firstname;
-        this.lastname=lastname;
+        this.lastname = lastname;
         this.email = email;
         this.age = age;
         this.dateOfBirth = dateOfBirth;
+        this.address = address;
     }
 
     public Long getId() {
@@ -76,6 +73,14 @@ public class StudentResponse {
         this.lastname = lastname;
     }
 
+    public AddressResponse getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressResponse address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "StudentResponse{" +
@@ -85,6 +90,7 @@ public class StudentResponse {
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", dateOfBirth=" + dateOfBirth +
+                ", address=" + address +
                 '}';
     }
 }

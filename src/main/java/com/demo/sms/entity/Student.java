@@ -1,15 +1,11 @@
 package com.demo.sms.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name="students")
+@Table(name = "students")
 public class Student {
 
     @Id
@@ -19,12 +15,17 @@ public class Student {
     private String firstname;
     @Column(nullable = false)
     private String lastname;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
     private Integer age;
     @Column(nullable = false)
     private LocalDate dateOfBirth;
+
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
 
     public Student() {
     }
@@ -86,6 +87,14 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -95,6 +104,7 @@ public class Student {
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", dateOfBirth=" + dateOfBirth +
+                ", address=" + address.getId() +
                 '}';
     }
 }
