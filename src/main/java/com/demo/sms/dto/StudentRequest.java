@@ -1,12 +1,6 @@
 package com.demo.sms.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.LocalDate;
-
 
 
 public class StudentRequest {
@@ -16,16 +10,19 @@ public class StudentRequest {
     private String email;
     private Integer age;
     private LocalDate dateOfBirth;
+    private AddressRequest address;
+
 
     public StudentRequest() {
     }
 
-    public StudentRequest(String firstname, String lastname, String email, Integer age, LocalDate dateOfBirth) {
+    public StudentRequest(String firstname, String lastname, String email, Integer age, LocalDate dateOfBirth, AddressRequest address) {
         this.firstname = firstname;
-        this.lastname=lastname;
+        this.lastname = lastname;
         this.email = email;
         this.age = age;
         this.dateOfBirth = dateOfBirth;
+        this.address = address;
     }
 
     public void setLastname(String lastname) {
@@ -66,6 +63,14 @@ public class StudentRequest {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public AddressRequest getAddress() {
+        return address;
+    }
+
+    public void setAddressRequest(AddressRequest address) {
+        this.address = address;
     }
 
     @Override
